@@ -1,0 +1,33 @@
+import math
+def avg_list(list):
+    total=0
+    for x in range(len(list)):
+        if type(list[x])==float or type(list[x])==int:
+            total = total + list[x]
+    return float(total/len(list))
+
+def DP_list(list):
+    total=0.0
+    avg_lst=avg_list(list)
+    for x in range(len(list)):
+        if type(list[x])==float or type(list[x])==int:
+            total = total + (list[x]-avg_lst)**2
+    return float(math.sqrt(total/(len(list)-1.)))
+
+def cor_list(list1,list2):
+    avg_list1=avg_list(list1)
+    avg_list2=avg_list(list2)
+    DP_list1=DP_list(list1)
+    DP_list2=DP_list(list2)
+    total=0
+    for x in range(len(list1)):
+        if (type(list1[x])==float or type(list1[x]) == int) and (type(list2[x])==float or type(list2[x]) == int):
+            total = total + ((list1[x]-avg_list1)*(list2[x]-avg_list2))
+    cov_list= total / (len(list1)-1)
+	else:
+	    return 'no_data'
+    try:
+	return cov_list/(DP_list1*DP_list2)
+    except ZeroDivisionError:    
+	return '**'
+

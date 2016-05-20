@@ -1,0 +1,31 @@
+#file catcher
+import requests
+import os
+
+
+a=1
+eqt_list=[]
+base_path=os.path.join(os.path.dirname(os.path.abspath(__file__)),"StkHis")
+try:
+    os.makedirs(base_path)
+except OSError:
+    pass
+file = open("stkbase.txt", "r")
+stk_list=file.read()
+stk_list=stk_list.replace('\r\n',' ')
+stk_list=stk_list.split(' ')
+for x in range(len(stk_list)):
+	stk_list[x]=stk_list[x].lower()
+for x in range(len(stk_list)):
+    if stk_list[x].count('.sa')==1 :
+    	    stk= stk_list[x]
+    	    print('Downloading %s' % stk )
+    	    url = 'https://ichart.finance.yahoo.com/table.csv?s='+stk+'&d=4&e=23&f=2014&g=d&a=0&b=3&c=2000&ignore=.csv'
+#    eqt_list.append(eqt)
+    	    xls_file = requests.get(url)
+    	    nme_eqt="%s.csv" % stk
+    	    with open(os.path.join(base_path,nme_eqt), "wb") as code:
+                code.write(xls_file.content)
+    else:
+	    break
+    
