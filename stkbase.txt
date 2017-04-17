@@ -1,6 +1,3 @@
-aef
-aw
-awdaw
 DTEX3.sa
 ECOR3.sa
 ELET3.sa
@@ -36,3 +33,4 @@ MULT3.sa
 NATU3.sa
 ODPV3.sa
 OIBR3.sa
+
